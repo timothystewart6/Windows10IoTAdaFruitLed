@@ -53,7 +53,7 @@ namespace Windows10IoTAdaFruitLed
                         matrix.DrawBitmap(matrix.fontSimple[p + i], Led.On, (p + i) % matrix.PanelsPerFrame);
                     }
                     matrix.FrameDraw();
-                    Task.Delay(100 * matrix.PanelsPerFrame);
+                    Task.Delay(100 * matrix.PanelsPerFrame).Wait();
                 }
 
                 foreach (Grid8x8.Symbols sym in Enum.GetValues(typeof(Grid8x8.Symbols)))
@@ -63,7 +63,7 @@ namespace Windows10IoTAdaFruitLed
                         matrix.DrawSymbol(sym, p);
                     }
                     matrix.FrameDraw();
-                    Task.Delay(100 * matrix.PanelsPerFrame);
+                    Task.Delay(100 * matrix.PanelsPerFrame).Wait();
                 }
 
                 matrix.FrameClear();
@@ -78,7 +78,7 @@ namespace Windows10IoTAdaFruitLed
                 {
                     matrix.DrawSymbol(Grid8x8.Symbols.Block, p);
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
 
@@ -88,13 +88,13 @@ namespace Windows10IoTAdaFruitLed
                     matrix.FrameSet(Led.On, matrix.Length - 1 - p);
 
                     matrix.FrameDraw();
-                    Task.Delay(2);
+                    Task.Delay(2).Wait();
 
                     matrix.FrameSet(Led.Off, p);
                     matrix.FrameSet(Led.Off, matrix.Length - 1 - p);
 
                     matrix.FrameDraw();
-                    Task.Delay(2);
+                    Task.Delay(2).Wait();
                 }
 
 
@@ -102,7 +102,7 @@ namespace Windows10IoTAdaFruitLed
                 {
                     matrix.ColumnDrawLine(c);
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
 
@@ -110,10 +110,10 @@ namespace Windows10IoTAdaFruitLed
                 {
                     matrix.RowDrawLine(r);
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
-                Task.Delay(1000);
+                Task.Delay(1000).Wait();
 
                 for (ushort i = 0; i < matrix.PanelsPerFrame; i++)
                 {
@@ -121,34 +121,34 @@ namespace Windows10IoTAdaFruitLed
                 }
 
                 matrix.FrameDraw();
-                Task.Delay(1000);
+                Task.Delay(1000).Wait();
 
                 for (int r = 0; r < matrix.RowsPerPanel * 2; r++)
                 {
                     matrix.FrameRollDown();
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
                 for (int r = 0; r < matrix.RowsPerPanel * 2; r++)
                 {
                     matrix.FrameRollUp();
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
                 for (int c = 0; c < matrix.ColumnsPerFrame * 1; c++)
                 {
                     matrix.FrameRollRight();
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
                 for (int c = 0; c < matrix.ColumnsPerFrame * 1; c++)
                 {
                     matrix.FrameRollLeft();
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
 
@@ -162,15 +162,15 @@ namespace Windows10IoTAdaFruitLed
                 {
                     matrix.DrawBox(i, i, matrix.ColumnsPerFrame - (i * 2), matrix.RowsPerPanel - (i * 2));
                     matrix.FrameDraw();
-                    Task.Delay(100);
+                    Task.Delay(100).Wait();
                 }
 
                 for (byte l = 0; l < 2; l++)
                 {
                     matrix.SetFrameState(LedDriver.Display.Off);
-                    Task.Delay(250);
+                    Task.Delay(250).Wait();
                     matrix.SetFrameState(LedDriver.Display.On);
-                    Task.Delay(250);
+                    Task.Delay(250).Wait();
                 }
 
 
@@ -183,7 +183,7 @@ namespace Windows10IoTAdaFruitLed
                     {
                         matrix.RowDrawLine(i, i - 0, matrix.ColumnsPerFrame - i - 1);
                         matrix.FrameDraw();
-                        Task.Delay(50);
+                        Task.Delay(50).Wait();
                     }
 
                     //for (byte l = 0; l < 6; l++) {
@@ -197,11 +197,11 @@ namespace Windows10IoTAdaFruitLed
                     {
                         matrix.RowDrawLine(i, i - 0, matrix.ColumnsPerFrame - i - 1, Led.Off);
                         matrix.FrameDraw();
-                        Task.Delay(50);
+                        Task.Delay(50).Wait();
                     }
                 }
 
-                Task.Delay(500);
+                Task.Delay(500).Wait();
                 matrix.FrameClear();
 
                 matrix.ScrollStringInFromRight("Hello World ", 100);
